@@ -1,11 +1,11 @@
 from bookish.app import db
-
+#from bookish.models.user_table import User #import BookCopy
 
 class Checkout(db.Model):
     # This sets the name of the table in the database
 
     # Here we outline what columns we want in our database
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("User.user_id"), primary_key=True)
     book_key = db.Column(db.String(), primary_key=True)
     due_date = db.Column(db.DateTime())
 
