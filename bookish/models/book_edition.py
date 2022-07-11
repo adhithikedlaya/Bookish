@@ -41,7 +41,7 @@ class BookCopy(db.Model):
         self.isbn = my_isbn
 
     def __repr__(self):
-        return '<book_key {}>'.format(self.book_key)
+        return '<book_id {}>'.format(self.book_id)
 
     # def serialize(self):
     #     return {
