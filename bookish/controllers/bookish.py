@@ -32,6 +32,7 @@ def bookish_routes(app):
                 } for example in examples]
             return {"examples": results}
 
+
     @app.route('/book_entry', methods=['POST', 'GET'])
     def handle_book():
         if request.method == 'POST':
