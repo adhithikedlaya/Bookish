@@ -3,7 +3,7 @@ from bookish.app import db
 
 class User(db.Model):
     # This sets the name of the table in the database
-
+    __tablename__ = 'User'
     # Here we outline what columns we want in our database
     user_id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String())
