@@ -1,7 +1,6 @@
 from bookish.app import db
 from bookish.models.book_copy import BookCopy
 
-
 class BookEdition(db.Model):
     # This sets the name of the table in the database
     __tablename__ = 'BookEdition'

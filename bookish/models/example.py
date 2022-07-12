@@ -1,6 +1,5 @@
 from bookish.app import db
 
-
 class Example(db.Model):
     # This sets the name of the table in the database
     __tablename__ = 'Test'

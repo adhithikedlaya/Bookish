@@ -1,4 +1,5 @@
 from bookish.app import db
+
 class BookCopy(db.Model):
     # This sets the name of the table in the database
     __tablename__ = 'BookCopy'

@@ -56,6 +56,7 @@ class BookQueryController():
                     "available copies": num_available,
                     "unavailable book details": borrowed_books
                 }
+
                 return results
             else:
                 return {"error": "Request method must be GET"}

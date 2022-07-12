@@ -1,5 +1,6 @@
 from flask import request
 from flask_jwt_extended import JWTManager, jwt_required, create_access_token
+
 import datetime
 
 from bookish.models.user_table import User

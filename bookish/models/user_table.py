@@ -1,5 +1,5 @@
 from bookish.app import db
-from bookish.models.checkout_table import Checkout #import BookCopy
+from bookish.models.checkout_table import Checkout
 
 class User(db.Model):
     # This sets the name of the table in the database
