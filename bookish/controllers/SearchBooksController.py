@@ -4,7 +4,7 @@ from bookish.models.book_edition import BookEdition
 from bookish.models.example import Example
 from bookish.models import db
 
-class SearchBooks():
+class SearchBooksController():
 
     def __init__(self, app):
 

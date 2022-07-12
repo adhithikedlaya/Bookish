@@ -14,13 +14,14 @@ class UserController():
 
         @app.route('/register', methods=['POST'])
         def register():
+            # Takes 'username', 'password'
             if request.method == 'POST':
                 if request.is_json:
                     data = request.get_json()
                     username = data['username']
-                    test = User.query.filter_by(username=username).first()
+                    test_user = User.query.filter_by(username=username).first()
 
-                    if test:
+                    if test_user:
                         return {"message": "User already exists."}, 409
                     else:
                         new_user = User(username, data['password'])
@@ -36,14 +37,14 @@ class UserController():
 
         @app.route('/login', methods=['POST'])
         def login():
+            # Takes 'username', 'password'
             if request.method == 'POST':
                 if request.is_json:
                     data = request.get_json()
                     username = data['username']
-                    test = User.query.filter_by(username=username).first()
+                    test_user = User.query.filter_by(username=username).first()
                     password = data['password']
-                    if test and test.password == password:
-                        username = data["username"]
+                    if test_user and test_user.password == password:
                         access_token = create_access_token(identity=username)
                         return {"message": "Login successful."
                                    , "access_token": access_token}, 201
@@ -58,24 +59,19 @@ class UserController():
 
         @app.route('/borrow_book', methods=['POST'])
         def borrow_book():
-            # Takes 'username', 'isbn', 'due_date'
+            # Takes 'username', 'isbn'
             if request.method == 'POST':
                 if request.is_json:
                     data = request.get_json()
                     user_id = User.query.filter_by(username=data["username"]).first().user_id
-
-                    today = datetime.datetime.now()
-                    due_date = today + datetime.timedelta(days=28)
+                    due_date = datetime.datetime.now() + datetime.timedelta(days=28)
 
                     copies = BookEdition.query.filter_by(isbn=data["isbn"]).first().book_copies
                     potential_keys = [copy.book_id for copy in copies]
-                    print(potential_keys)
-                    borrowed_keys = [Checkout.query.filter_by(book_id=id).first() is None for id in potential_keys]
 
                     first_available = False
                     for i in range(0, len(potential_keys)):
-                        if borrowed_keys[i]:
-                            print("First available",i)
+                        if not Checkout.query.filter_by(book_id=potential_keys[i]).first():
                             first_available = True
                             break
 

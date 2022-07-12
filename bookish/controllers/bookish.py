@@ -33,27 +33,6 @@ def bookish_routes(app):
             return {"examples": results}
 
 
-    @app.route('/book_entry', methods=['POST', 'GET'])
-    def handle_book():
-        if request.method == 'POST':
-            if request.is_json:
-                data = request.get_json()
-                new_book = BookEdition(data['isbn'], data['title'], data['author'], data['book_copies'] )
-                db.session.add(new_book)
-                db.session.commit()
-                return {"message": "New book has been created successfully."}
-            else:
-                return {"error": "The request payload is not in JSON format"}
-
-        elif request.method == 'GET':
-            books = BookEdition.query.all()
-            results = [
-                {
-                    'isbn': book.isbn,
-                    'title': book.title,
-                    'author': book.author
-                } for book in books]
-            return {"books": results}
 
 
 

@@ -4,7 +4,7 @@ from bookish.models.book_edition import BookEdition
 from bookish.models.example import Example
 from bookish.models import db
 
-class HandleBooks():
+class HandleBooksController():
 
     def __init__(self, app):
 
@@ -27,8 +27,6 @@ class HandleBooks():
         @app.route('/catalogue', methods=['GET'])
         def get_catalogue():
             if request.method == 'GET':
-                # ROWS_PER_PAGE = 20
-
                 books = BookEdition.query.all()
                 results = [
                     {
