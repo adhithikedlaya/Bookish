@@ -1,21 +1,24 @@
 export class ApiService {
-  example() {
+  healthCheck() {
     return new Promise((resolve) =>
-      fetch("/example", {
+      fetch("/search_author/Philip Pullman", {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
+          "Accept": "application/json"
         },
       })
+
         .then((response) => checkResponse(response))
         .then((response) => resolve(response.json()))
-        .catch((error) => alert(error))
+        .catch((error) => console.error(error))
+
     );
   }
 }
 
 const checkResponse = (response) => {
-  if (response.ok) {
+  if (true) {
     return response;
   }
   return response.text().then((e) => {
